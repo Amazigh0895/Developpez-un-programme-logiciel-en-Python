@@ -9,9 +9,9 @@ class Input():
         """verifie si l'utilisateur a saisie le bon choix"""
 
         default_user_choice_input = ""
-        while default_user_choice_inpu not in choice_input:
+        while default_user_choice_input not in choice_input:
             try :
-                default_user_choice_inpu = user_input 
+                default_user_choice_input = user_input 
             except:
                 print(INPUT.ERROR_VALUE_INPUT)
     def makeValideChoiceInput(user_input):

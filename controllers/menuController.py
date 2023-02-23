@@ -4,7 +4,7 @@ from models.round import Round
 from models.game import Game
 from models.tournament import Tournament
 from views import menuConstants as INPUT
-from controllers.verifInputController import Input
+from controllers.verifInputController import Input 
 
 class MenuController:
     """la classe menu """
@@ -17,15 +17,8 @@ class MenuController:
         """commencer la partie"""
         print(INPUT.MENU_TITLE)
 
-        
         choice_input = [0 , 1 , 2]
-        user_choice_input = ""
-
-        while user_choice_input not in choice_input:
-            try :
-                user_choice_input = int(input(INPUT.MAIN_MENU))
-            except:
-                print(INPUT.ERROR_VALUE_INPUT)
+        Input.makeRightChoiceInput(choice_input,int(input(INPUT.MAIN_MENU)))
 
         while user_choice_input != 0 :
             if user_choice_input == 1:
