@@ -18,7 +18,8 @@ class MenuController:
         print(INPUT.MENU_TITLE)
 
         choice_input = [0 , 1 , 2]
-        Input.makeRightChoiceInput(choice_input,int(input(INPUT.MAIN_MENU)))
+        
+        user_choice_input = Input.makeRightChoiceInput(choice_input,INPUT.MAIN_MENU)
 
         while user_choice_input != 0 :
             if user_choice_input == 1:

@@ -4,16 +4,21 @@ class Input():
 
     def __init__(self):
         pass
-
-    def makeRightChoiceInput(choice_input,user_input ):
+    @staticmethod
+    def makeRightChoiceInput(choice_input,user_input_choice):
         """verifie si l'utilisateur a saisie le bon choix"""
-
-        default_user_choice_input = ""
-        while default_user_choice_input not in choice_input:
+        
+        user_input = ""
+        while user_input not in choice_input:
             try :
-                default_user_choice_input = user_input 
+                user_input = int(input(user_input_choice)) 
             except:
                 print(INPUT.ERROR_VALUE_INPUT)
+        return user_input
+
+
+
+    @staticmethod
     def makeValideChoiceInput(user_input):
         """verifie si l'utilisateur a saisie un choix valide"""
 
