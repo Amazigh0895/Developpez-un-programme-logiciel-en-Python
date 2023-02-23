@@ -4,6 +4,7 @@ from models.round import Round
 from models.game import Game
 from models.tournament import Tournament
 from views import menuConstants as INPUT
+from controllers.verifInputController import Input
 
 class MenuController:
     """la classe menu """
