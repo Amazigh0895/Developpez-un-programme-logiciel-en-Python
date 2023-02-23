@@ -16,9 +16,8 @@ class MenuController:
     def startMenu():
         """commencer la partie"""
         print(INPUT.MENU_TITLE)
-
-        choice_input = [0 , 1 , 2]
         
+        choice_input = [0 , 1 , 2]
         user_choice_input = Input.makeRightChoiceInput(choice_input,INPUT.MAIN_MENU)
 
         while user_choice_input != 0 :
@@ -28,13 +27,8 @@ class MenuController:
                 
                 # Choix du lancement de la partie
                 choice3_input = [0 , 1]
-                user_choice3_input = ""
-                while user_choice3_input not in choice3_input:
-                    try:
-                        user_choice3_input = int(input(INPUT.STR_IF_START_GAME))
-                    except:
-                        print(INPUT.ERROR_VALUE_INPUT)
-
+                user_choice3_input =Input.makeRightChoiceInput(choice3_input,INPUT.STR_IF_START_GAME)
+                    
                 while user_choice3_input != 0 :     
                     if user_choice3_input == 1 :
 
@@ -59,20 +53,12 @@ class MenuController:
     def createTournament(date):
         """Menu de creation des tournois"""
         tournament = None
-        print(INPUT.MENU_TITLE_TOURNAMENT)       
-        while INPUT.AVAILABLE_INPUT:
-                    try:
-                        name = input(INPUT.STR_TOURNAMENT_NAME)
-                        location = input(INPUT.STR_TOURNAMENT_LOCATION)
-                        numberOfRounds = int(input(INPUT.STR_TOURNAMENT_NUMBER_OF_ROUNDS))
-                        comment = input(INPUT.STR_TOURNAMENT_COMMENT)
-                        tournament = Tournament(name,location,date,numberOfRounds,comment)
-                        INPUT.AVAILABLE_INPUT = False
-
-                    except:
-                        print(INPUT.ERROR_VALUE_INPUT)
-                        INPUT.AVAILABLE_INPUT = True
-      
+        print(INPUT.MENU_TITLE_TOURNAMENT)  
+        name = Input.makeValideChoiceInput(INPUT.STR_TOURNAMENT_NAME)     
+        location = Input.makeValideChoiceInput(INPUT.STR_TOURNAMENT_LOCATION)
+        numberOfRounds = Input.makeValideChoiceInput(INPUT.STR_TOURNAMENT_NUMBER_OF_ROUNDS)
+        comment = Input.makeValideChoiceInput(INPUT.STR_TOURNAMENT_COMMENT)
+        tournament = Tournament(name,location,date,numberOfRounds,comment)
 
         print(INPUT.STR_TOURNAMENT_SAVED)
 
@@ -95,14 +81,8 @@ class MenuController:
             player = Player(firstName,lastName,birthday,0)
             player.save()
             print(INPUT.STR_PLAYER_SAVED)
-            user_choice2_input = ""
-            while user_choice2_input not in choice2_input :
-
-                try :
-                    user_choice2_input  = int(input(INPUT.STR_IF_ADD_NEW_PLAYER))
-                except:
-                    print(INPUT.ERROR_VALUE_INPUT)
-           
+            user_choice2_input = Input.makeRightChoiceInput(choice2_input,INPUT.STR_IF_ADD_NEW_PLAYER)   
+                
      
         print("Nous avons terminé de créer les joueurs")
         return player

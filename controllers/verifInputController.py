@@ -21,15 +21,16 @@ class Input():
     @staticmethod
     def makeValideChoiceInput(user_input):
         """verifie si l'utilisateur a saisie un choix valide"""
-
+        value = ""
         while INPUT.AVAILABLE_INPUT:
             try:
-                user_input   
+                value = input(user_input)   
                 INPUT.AVAILABLE_INPUT = False
-
             except:
                 print(INPUT.ERROR_VALUE_INPUT)
                 INPUT.AVAILABLE_INPUT = True
+        INPUT.AVAILABLE_INPUT = True
+        return value
     def ifNotZero(user_input):
          pass
 
