@@ -56,7 +56,7 @@ class MenuController:
         print(INPUT.MENU_TITLE_TOURNAMENT)  
         name = Input.makeValideChoiceInput(INPUT.STR_TOURNAMENT_NAME)     
         location = Input.makeValideChoiceInput(INPUT.STR_TOURNAMENT_LOCATION)
-        numberOfRounds = Input.makeValideChoiceInput(INPUT.STR_TOURNAMENT_NUMBER_OF_ROUNDS)
+        numberOfRounds = Input.makeValideChoiceInput(INPUT.STR_TOURNAMENT_NUMBER_OF_ROUNDS,True)
         comment = Input.makeValideChoiceInput(INPUT.STR_TOURNAMENT_COMMENT)
         tournament = Tournament(name,location,date,numberOfRounds,comment)
 
