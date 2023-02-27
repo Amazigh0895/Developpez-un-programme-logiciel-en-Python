@@ -6,7 +6,7 @@ class Input():
         pass
     @staticmethod
     def makeRightChoiceInput(choice_input,user_input_choice):
-        """verifie si l'utilisateur a saisie le bon choix"""
+        """verifie si l'utilisateur a saisie le bon choix parmis ceux proposés"""
         
         user_input = ""
         while user_input not in choice_input:
@@ -42,7 +42,5 @@ class Input():
                     INPUT.AVAILABLE_INPUT = True
             INPUT.AVAILABLE_INPUT = True
         return value
-    def ifNotZero(user_input):
-         pass
-
+    
         

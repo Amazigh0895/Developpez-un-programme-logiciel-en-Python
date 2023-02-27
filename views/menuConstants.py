@@ -30,7 +30,7 @@ MAIN_MENU = """
                
             Choix 1 : Creation du tournoi :
                         -Ajout des joueurs
-                        -Lancer la partie d'echec ♖
+                        -Lancement de la partie d'echec ♖
             Choix 2 : Accès au Menu RAPPORTS
             Choix 0 : Sortie du programme
 -------------------------------------------------------------
