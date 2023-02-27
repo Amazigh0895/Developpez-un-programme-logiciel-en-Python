@@ -1,11 +1,13 @@
 from tinydb import TinyDB,Query
 from models.round import Round
+from models.player import Player
 from views import menuConstants as INPUT
 class Tournament:
     """classe tournoi"""
 
     # Déclartation d'un variable static
     db = TinyDB('data/tournaments/list_tournament_Roundgames.json')
+    dbPlayer = TinyDB('data/tournaments/list_players_by_tournament')
     User = Query()
     
     def __init__(self,name,location,dateTime,numberOfRounds,description):
@@ -27,6 +29,7 @@ class Tournament:
         self.__numberOfRounds = numberOfRounds
         self.__description = description
         self.__listRounds = {}
+        self.__playersList = {}
     # Getters
     def getName(self):
         """retourne le nom du tournoi"""
@@ -46,7 +49,10 @@ class Tournament:
         
     def getplayersList(self):
         """retourne la liste des joueurs """
-        return self.__playersList
+        listPlayers = []
+        for player in self.__playersList:
+            listPlayers.append(Player(**player))
+        return listPlayers  
         
     def getListRounds(self):
         """retourne la liste des tours du tournoi"""
@@ -77,10 +83,31 @@ class Tournament:
         """modifie la description du tournoi"""
         self.__description = description
         
-    def setPlayerList(self,playersList):
+    def setPlayerList(self,players):
         """modifie la liste des joueurs du tournoi"""
-        self.__playersList = playersList
+        self.__playersList = players
+
+    # insertion des joueurs par tournoi-------------------------------------- 
+    @staticmethod    
+    def addPlayer(player):
+        """ajout des joueur d'un tournoi dans la base de donnée json"""
+        Tournament.dbPlayer.insert(player.__dict__)
+
+    @staticmethod 
+    def loadListPlayers():
+        """methode static qui renvoi des donnees des joueurs d'un tournoi depuis la base de donnée json"""
+        listPlayers_dict = Tournament.dbPlayer.all()
+        return listPlayers_dict
+    @staticmethod
+    def resetPlayerDb():
+        """réinitialise la base de donnée des joueurs d'un tournoi"""
+        Tournament.dbPlayer.truncate()
+    @staticmethod
+    def resetDbRound():
+        Round.dbRoundTournament.truncate()
+    #--------------------------------------------------------------------------
         
+
     def setListGameRounds(self,listRounds):
         """modifie la listes des tours du tournoi"""
         self.__listRounds = listRounds

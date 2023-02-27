@@ -13,6 +13,7 @@ class Player:
         self.lastName = lastName
         self.birthday = birthday
         self.leScore = leScore
+
         
         
     # Getters

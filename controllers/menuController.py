@@ -23,7 +23,7 @@ class MenuController:
         while user_choice_input != 0 :
             if user_choice_input == 1:
                 tournament = MenuController.createTournament("")
-                player = MenuController.createPlayers()
+                MenuController.createPlayers(tournament)
                 
                 # Choix du lancement de la partie
                 choice3_input = [0 , 1]
@@ -32,8 +32,8 @@ class MenuController:
                 while user_choice3_input != 0 :     
                     if user_choice3_input == 1 :
 
-                        # Chargement des joueurs
-                        listPlayers = player.load()
+                        # Chargement des joueurs du tournoi
+                        listPlayers = tournament.getplayersList()
 
                         # Instantiation des objets Round et Game
                         round = Round("Round","")
@@ -45,7 +45,8 @@ class MenuController:
                 user_choice_input = 0 
             elif user_choice_input == 2:
                 pass 
-                        
+        Tournament.resetPlayerDb()
+        Tournament.resetDbRound()                
         print(INPUT.END_GAME)  
 
 
@@ -65,7 +66,7 @@ class MenuController:
         return tournament
 
     @staticmethod
-    def createPlayers():
+    def createPlayers(tournament):
         """Menu de creation des joueurs"""
         print(INPUT.MENU_TITLE_PLAYER)
 
@@ -79,13 +80,17 @@ class MenuController:
 
             """Ajout des joueurs"""
             player = Player(firstName,lastName,birthday,0)
+            tournament.addPlayer(player)
             player.save()
             print(INPUT.STR_PLAYER_SAVED)
             user_choice2_input = Input.makeRightChoiceInput(choice2_input,INPUT.STR_IF_ADD_NEW_PLAYER)   
-                
-     
+        # test
+        tournament.setPlayerList(Tournament.loadListPlayers())        
+        print(tournament.getplayersList())
+
+
         print("Nous avons terminé de créer les joueurs")
-        return player
+        
 
     
   

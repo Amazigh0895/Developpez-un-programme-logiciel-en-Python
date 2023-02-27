@@ -5,6 +5,7 @@ class Round:
 
     # Déclartation d'un variable static
     db = TinyDB('data/tournaments/list_rounds_games.json')
+    dbRoundTournament = TinyDB('data/tournaments/list_rounds_games_by_Tournaments.json')
     User = Query()
 
     def __init__(self,name,dateTime):
@@ -114,13 +115,16 @@ class Round:
     def save(self):
         """sauvegarde la liste des matchs des tours dans la base de donnée json"""
         Round.db.insert(self.__dict__)
+        Round.dbRoundTournament.insert(self.__dict__)
 
     @staticmethod
     def load():
         """charge les données des matchs depuis le fichier json"""
-        listRound_game_dict = Round.db.all()
+        listRound_game_dict = Round.dbRoundTournament.all()
         return listRound_game_dict
-        
+    
+
+   
         
        
 
