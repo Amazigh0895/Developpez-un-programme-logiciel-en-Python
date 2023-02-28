@@ -1,5 +1,4 @@
 from tinydb import TinyDB,Query
-import json
 class Player:
     """la classe joueur"""
 
@@ -26,6 +25,9 @@ class Player:
     def getScore(self):
         """renvois le score du joueur"""
         return self.leScore
+    def getBirthday(self):
+        """renvoi la date de naissance du joueur"""
+        return self.birthday
     # Setters    
     def setScore(self,newScore):
         """reinitilise le score"""

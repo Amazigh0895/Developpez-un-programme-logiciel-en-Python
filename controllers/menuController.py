@@ -5,6 +5,7 @@ from models.game import Game
 from models.tournament import Tournament
 from views import menuConstants as INPUT
 from controllers.inputController import Input 
+from views.reports import Reports
 
 class MenuController:
     """la classe menu """
@@ -15,6 +16,9 @@ class MenuController:
     @staticmethod
     def startMenu():
         """commencer la partie"""
+        Reports.displayOfAllPlayers()
+
+         
         print(INPUT.MENU_TITLE)
         
         choice_input = [0 , 1 , 2]
@@ -84,11 +88,7 @@ class MenuController:
             player.save()
             print(INPUT.STR_PLAYER_SAVED)
             user_choice2_input = Input.makeRightChoiceInput(choice2_input,INPUT.STR_IF_ADD_NEW_PLAYER)   
-        # test
         tournament.setPlayerList(Tournament.loadListPlayers())        
-        print(tournament.getplayersList())
-
-
         print("Nous avons terminé de créer les joueurs")
         
 
