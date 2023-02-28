@@ -50,3 +50,21 @@ STR_INPUT_RESULTS_GAME = "Veuillez saisir le resultat de la partie : "
 
 ERROR_VALUE_INPUT = "Veuillez saisir la bonne valeur !!"
 AVAILABLE_INPUT = True
+
+# Menu rapports----------------------------------
+MENU_REPORTS = """
+---------------------------------------------------------------
+♖♖♖ Nos rapports ♖♖♖
+
+            Nous pouvons vous afficher les rapports suivants dans le programme :
+
+            Choix 1     ● liste de tous les joueurs par ordre alphabétique ;
+            Choix 2     ● liste de tous les tournois ;
+            Choix 3     ● nom et dates d’un tournoi donné ;
+            Choix 4     ● liste des joueurs du tournoi par ordre alphabétique ;
+            Choix 5     ● liste de tous les tours du tournoi et de tous les matchs du tour.
+            
+            Choix 0     ● Sortie du programme   
+           
+-------------------------------------------------------------
+"""

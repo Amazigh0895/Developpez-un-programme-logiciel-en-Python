@@ -15,10 +15,7 @@ class MenuController:
 
     @staticmethod
     def startMenu():
-        """commencer la partie"""
-        Reports.displayOfAllPlayers()
-
-         
+        """commencer la partie"""  
         print(INPUT.MENU_TITLE)
         
         choice_input = [0 , 1 , 2]
@@ -48,7 +45,7 @@ class MenuController:
                         user_choice3_input = 0 
                 user_choice_input = 0 
             elif user_choice_input == 2:
-                pass 
+                print(INPUT.MENU_REPORTS)
         Tournament.resetPlayerDb()
         Tournament.resetDbRound()                
         print(INPUT.END_GAME)  
