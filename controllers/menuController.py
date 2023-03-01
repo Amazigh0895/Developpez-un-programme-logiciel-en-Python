@@ -28,7 +28,7 @@ class MenuController:
                 
                 # Choix du lancement de la partie
                 choice3_input = [0 , 1]
-                user_choice3_input =Input.makeRightChoiceInput(choice3_input,INPUT.STR_IF_START_GAME)
+                user_choice3_input = Input.makeRightChoiceInput(choice3_input,INPUT.STR_IF_START_GAME)
                     
                 while user_choice3_input != 0 :     
                     if user_choice3_input == 1 :
@@ -45,7 +45,21 @@ class MenuController:
                         user_choice3_input = 0 
                 user_choice_input = 0 
             elif user_choice_input == 2:
-                print(INPUT.MENU_REPORTS)
+
+                choice4_input = [0, 1, 2, 3, 4, 5]
+                user_choice4_input = Input.makeRightChoiceInput(choice4_input,INPUT.MENU_REPORTS)
+
+                while user_choice4_input != 0 :     
+                    if user_choice4_input == 1 :
+                        Reports.displayOfAllPlayers()
+                        user_choice4_input = 0
+                    elif user_choice4_input == 2 :
+                        Reports.displayOfAllTournaments()
+                        user_choice4_input = 0
+                user_choice_input = 0 
+                    
+                
+                    
         Tournament.resetPlayerDb()
         Tournament.resetDbRound()                
         print(INPUT.END_GAME)  

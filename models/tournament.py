@@ -106,8 +106,14 @@ class Tournament:
     def resetDbRound():
         Round.dbRoundTournament.truncate()
     #--------------------------------------------------------------------------
+    @staticmethod    
+    def load():
+        """charger tous les tournoi de la base de donnée"""
+        listTournaments_dict = Tournament.db.all()
+        return listTournaments_dict
         
-
+            
+    
     def setListGameRounds(self,listRounds):
         """modifie la listes des tours du tournoi"""
         self.__listRounds = listRounds
