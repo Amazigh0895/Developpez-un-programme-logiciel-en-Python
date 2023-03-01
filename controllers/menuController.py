@@ -56,6 +56,12 @@ class MenuController:
                     elif user_choice4_input == 2 :
                         Reports.displayOfAllTournaments()
                         user_choice4_input = 0
+                    elif user_choice4_input == 3 :
+                        Reports.displayOfTournament()
+                        user_choice4_input = 0
+                    elif user_choice4_input == 4 :
+                        Reports.displayOfPlayersByTournament()
+                        user_choice4_input = 0
                 user_choice_input = 0 
                     
                 
