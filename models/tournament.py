@@ -1,6 +1,5 @@
 from tinydb import TinyDB,Query
 from models.round import Round
-from models.player import Player
 from views import menuConstants as INPUT
 class Tournament:
     """classe tournoi"""
@@ -49,6 +48,7 @@ class Tournament:
         
     def getplayersList(self):
         """retourne la liste des joueurs """
+        from models.player import Player
         listPlayers = []
         for player in self.__playersList:
             listPlayers.append(Player(**player))
@@ -98,10 +98,12 @@ class Tournament:
         """methode static qui renvoi des donnees des joueurs d'un tournoi depuis la base de donnée json"""
         listPlayers_dict = Tournament.dbPlayer.all()
         return listPlayers_dict
+    
     @staticmethod
     def resetPlayerDb():
         """réinitialise la base de donnée des joueurs d'un tournoi"""
         Tournament.dbPlayer.truncate()
+
     @staticmethod
     def resetDbRound():
         Round.dbRoundTournament.truncate()
@@ -112,13 +114,10 @@ class Tournament:
         listTournaments_dict = Tournament.db.all()
         return listTournaments_dict
         
-            
-    
     def setListGameRounds(self,listRounds):
         """modifie la listes des tours du tournoi"""
         self.__listRounds = listRounds
         
-
     def  startRoundsGame(self,obj_round,obj_game):
         """declenche la partie en fonction du nombres de tours"""
         nbMax = self.getNumberOfRounds()

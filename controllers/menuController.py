@@ -6,6 +6,7 @@ from models.tournament import Tournament
 from views import menuConstants as INPUT
 from controllers.inputController import Input 
 from views.reports import Reports
+from datetime import datetime
 
 class MenuController:
     """la classe menu """
@@ -23,7 +24,7 @@ class MenuController:
 
         while user_choice_input != 0 :
             if user_choice_input == 1:
-                tournament = MenuController.createTournament("")
+                tournament = MenuController.createTournament(str(datetime.now()))
                 MenuController.createPlayers(tournament)
                 
                 # Choix du lancement de la partie
@@ -37,7 +38,7 @@ class MenuController:
                         listPlayers = tournament.getplayersList()
 
                         # Instantiation des objets Round et Game
-                        round = Round("Round","")
+                        round = Round("Round",str(datetime.now()))
                         game = Game(listPlayers)
 
                         # Lancement de la partie 
@@ -48,7 +49,7 @@ class MenuController:
 
                 choice4_input = [0, 1, 2, 3, 4, 5]
                 user_choice4_input = Input.makeRightChoiceInput(choice4_input,INPUT.MENU_REPORTS)
-
+               
                 while user_choice4_input != 0 :     
                     if user_choice4_input == 1 :
                         Reports.displayOfAllPlayers()
@@ -62,12 +63,27 @@ class MenuController:
                     elif user_choice4_input == 4 :
                         Reports.displayOfPlayersByTournament()
                         user_choice4_input = 0
-                user_choice_input = 0 
-                    
+                    elif user_choice4_input == 5 :
+                        Reports.displayOfallRoundsgamesByTournament()
+                        user_choice4_input = 0
+
+            choice5_input = ["Y","N"]
+            user_choice5_input = Input.makeRightChoiceInput(choice5_input,INPUT.STR_DISPLAY_REPORTS,False)
+            if user_choice5_input == "N" :
+                user_choice_input = 0
+            else:
+                user_choice_input = 2
+               
+
                 
+             
+                
+         
+           
+
                     
         Tournament.resetPlayerDb()
-        Tournament.resetDbRound()                
+        Tournament.resetDbRound()               
         print(INPUT.END_GAME)  
 
 

@@ -1,4 +1,5 @@
 from tinydb import TinyDB,Query
+from models.tournament import Tournament
 class Player:
     """la classe joueur"""
 
@@ -33,6 +34,7 @@ class Player:
         """reinitilise le score"""
         self.leScore += newScore
         Player.db.update({'leScore':self.leScore},Player.User.lastName ==f'{self.getLastName()}')
+        Tournament.dbPlayer.update({'leScore':self.leScore},Tournament.User.lastName ==f'{self.getLastName()}')
     
     def save(self):
         """sauvegarde la liste des joueurs dans la base de donnée json"""

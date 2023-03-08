@@ -68,3 +68,4 @@ MENU_REPORTS = """
            
 -------------------------------------------------------------
 """
+STR_DISPLAY_REPORTS = "Vous voulez afficher les rapports : [Y/N]"

@@ -5,16 +5,24 @@ class Input():
     def __init__(self):
         pass
     @staticmethod
-    def makeRightChoiceInput(choice_input,user_input_choice):
+    def makeRightChoiceInput(choice_input,user_input_choice,isaNumber=True):
         """verifie si l'utilisateur a saisie le bon choix parmis ceux proposés"""
         
         user_input = ""
-        while user_input not in choice_input:
-            try :
-                user_input = int(input(user_input_choice)) 
-            except:
-                print(INPUT.ERROR_VALUE_INPUT)
-        return user_input
+        if isaNumber:
+            while user_input not in choice_input:
+                try :
+                    user_input = int(input(user_input_choice)) 
+                except:
+                    print(INPUT.ERROR_VALUE_INPUT)
+            return user_input
+        else:
+            while user_input not in choice_input:
+                try :
+                    user_input = input(user_input_choice) 
+                except:
+                    print(INPUT.ERROR_VALUE_INPUT)
+            return user_input
 
 
 
