@@ -128,6 +128,7 @@ class Tournament:
             obj_round.startGame(obj_game)
 
         self.setListGameRounds(Round.load())
+        self.setPlayerList(Tournament.loadListPlayers())  
         Tournament.save(self.__dict__)
                   
     @staticmethod                

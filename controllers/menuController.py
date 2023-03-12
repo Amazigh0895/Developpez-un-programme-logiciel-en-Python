@@ -28,11 +28,16 @@ class MenuController:
                 MenuController.createPlayers(tournament)
                 
                 # Choix du lancement de la partie
-                choice3_input = [0 , 1]
-                user_choice3_input = Input.makeRightChoiceInput(choice3_input,INPUT.STR_IF_START_GAME)
+                choice3_input = ["Y","N"]
+                user_choice3_input = Input.makeRightChoiceInput(choice3_input,INPUT.STR_IF_START_GAME,False)
+                if user_choice3_input == "N" :
+                    user_choice3_input = 0
+                else:
+                    user_choice3_input = 1 
                     
                 while user_choice3_input != 0 :     
                     if user_choice3_input == 1 :
+                        print("hello")
 
                         # Chargement des joueurs du tournoi
                         listPlayers = tournament.getplayersList()
@@ -72,16 +77,7 @@ class MenuController:
             if user_choice5_input == "N" :
                 user_choice_input = 0
             else:
-                user_choice_input = 2
-               
-
-                
-             
-                
-         
-           
-
-                    
+                user_choice_input = 2         
         Tournament.resetPlayerDb()
         Tournament.resetDbRound()               
         print(INPUT.END_GAME)  
@@ -107,7 +103,7 @@ class MenuController:
         """Menu de creation des joueurs"""
         print(INPUT.MENU_TITLE_PLAYER)
 
-        choice2_input = [0 , 1]
+        choice2_input = ["Y","N"]
         user_choice2_input = 1
         while user_choice2_input  != 0 :
 
@@ -120,8 +116,12 @@ class MenuController:
             tournament.addPlayer(player)
             player.save()
             print(INPUT.STR_PLAYER_SAVED)
-            user_choice2_input = Input.makeRightChoiceInput(choice2_input,INPUT.STR_IF_ADD_NEW_PLAYER)   
-        tournament.setPlayerList(Tournament.loadListPlayers())        
+            user_choice2_input = Input.makeRightChoiceInput(choice2_input,INPUT.STR_IF_ADD_NEW_PLAYER,False)
+            if user_choice2_input == "N" :
+                user_choice2_input = 0
+            else:
+                user_choice2_input = 1 
+        tournament.setPlayerList(Tournament.loadListPlayers())  
         print("Nous avons terminé de créer les joueurs")
         
 

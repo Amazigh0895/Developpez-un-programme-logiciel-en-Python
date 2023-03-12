@@ -3,17 +3,9 @@ STR_PLAYER_FIRSTNAME = "Veuillez saisir le nom du joueur : "
 STR_PLAYER_LASTNAME = "Veuillez saisir le prénom du joueur : "
 STR_PLAYER_BIRTHDAY = "Veuillez saisir la date de naissance du joueur : "
 STR_PLAYER_SAVED = "Le joueur a été crée avec  succé !"
-STR_IF_ADD_NEW_PLAYER = """ Vous voulez rajouter un autre joueur ? 
-                        
-                        choix 1 pour oui 
-                        Choix 0 pour non 
-"""
+STR_IF_ADD_NEW_PLAYER = " Vous voulez rajouter un autre joueur : [Y/N] "
 
-STR_IF_START_GAME = """ Vous voulez lancez la partie d'echec ♖  ? 
-                        
-                        Choix 1 pour oui 
-                        Choix 0 pour non 
-"""
+STR_IF_START_GAME = " Vous voulez lancez la partie d'echec ♖ : [ Y/N] " 
 
 # Tournoi------------------------------------
 STR_TOURNAMENT_NAME = "Veuillez saisir le nom du tournoi : "
@@ -68,4 +60,4 @@ MENU_REPORTS = """
            
 -------------------------------------------------------------
 """
-STR_DISPLAY_REPORTS = "Vous voulez afficher les rapports : [Y/N]"
+STR_DISPLAY_REPORTS = "Vous voulez afficher les rapports : [Y/N] "
