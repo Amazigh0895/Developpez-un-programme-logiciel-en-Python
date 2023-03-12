@@ -7,7 +7,7 @@
 _Réalisé sous Windows 11 - Python version Python 3.10.1_
 
 
-## Table des matières
+## Sommaire
 
 1. [Initialisation du projet](#id-section1)
     1. [Windows](#id-section1-1)
@@ -30,12 +30,12 @@ _Réalisé sous Windows 11 - Python version Python 3.10.1_
 Dans Windows Powershell, naviguer vers le dossier souhaité.
 ###### Récupération du projet
 
-    $ git clone https://github.com/hmignon/P4_mignon_helene.git
+    $ git clone https://github.com/Amazigh0895/Developpez-un-programme-logiciel-en-Python.git
 
 ###### Activer l'environnement virtuel
-    $ cd P4_mignon_helene 
+    $ cd Developpez-un-programme-logiciel-en-Python
     $ python -m venv env 
-    $ ~env\scripts\activate
+    $ source env\scripts\activate
     
 ###### Installer les paquets requis
     $ pip install -r requirements.txt
@@ -52,10 +52,10 @@ Dans Windows Powershell, naviguer vers le dossier souhaité.
 Dans le terminal, naviguer vers le dossier souhaité.
 ###### Récupération du projet
 
-    $ git clone https://github.com/hmignon/P4_mignon_helene.git
+    $ git clone https://github.com/Amazigh0895/Developpez-un-programme-logiciel-en-Python.git
 
 ###### Activer l'environnement virtuel
-    $ cd P4_mignon_helene 
+    $ cd Developpez-un-programme-logiciel-en-Python
     $ python3 -m venv env 
     $ source env/bin/activate
     
@@ -75,33 +75,3 @@ Dans le terminal, naviguer vers le dossier souhaité.
     $ flake8 --format=html --htmldir=flake8_report
 
 **Vous trouverez le rapport dans le dossier _'flake8-report'_.**
-
-_Dernier rapport exporté :_
-
-![latest_report](img/latest_report.png)
-
-<div id='id-section2'></div>
-
-## 2. Options des menus
-
-<div id='id-section2-1'></div>
-
-#### i. Menu Principal
-![main_menu](img/main_menu.png)
-
-<div id='id-section2-2'></div>
-
-#### ii. Menu des rapports
-![main_menu](img/reports_menu.png)
-
-<div id='id-section3'></div>
-
-## 3. Exemples d'affichage
-#### Matchs d'une ronde :
-![round](img/round_example.png)
-
-#### Rapport des joueurs :
-![player_report](img/players_report.png)
-
-#### Rapport des rondes :
-![round_report](img/rounds_report.png)
