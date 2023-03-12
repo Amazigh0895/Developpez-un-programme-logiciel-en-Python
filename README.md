@@ -1,5 +1,5 @@
 # FECHETAH Amazigh -Projet 4 Developpez-un-programme-logiciel-en-Python
-***Application de gestion de tournoi d'échecs avec base de données.***
+***Application de gestion de tournoi d'échecs avec base de données JSON.***
 
 _Réalisé sous Windows 11 - Python version Python 3.10.1_
 
@@ -10,11 +10,6 @@ _Réalisé sous Windows 11 - Python version Python 3.10.1_
     1. [Windows](#id-section1-1)
     1. [MacOS et Linux](#id-section1-2)
     3. [Générer un rapport flake8](#id-section1-3)
-2. [Options des menus](#id-section2)
-    1. [Menu principal](#section2-1)
-    2. [Rapports](#section2-2)
-3. [Exemples d'affichage](#section3)
-
 
 <div id='id-section1'></div>
 
