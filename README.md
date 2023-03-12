@@ -1,7 +1,4 @@
 # FECHETAH Amazigh -Projet 4 Developpez-un-programme-logiciel-en-Python
-
-
-# Projet 4 DA-Python OC (Hélène Mignon)
 ***Application de gestion de tournoi d'échecs avec base de données.***
 
 _Réalisé sous Windows 11 - Python version Python 3.10.1_
