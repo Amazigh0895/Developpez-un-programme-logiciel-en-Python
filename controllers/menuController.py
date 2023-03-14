@@ -1,7 +1,7 @@
 """ Menu de l'application """
 from models.player import Player
 from models.round import Round
-from models.game import Game
+from controllers.game import Game
 from models.tournament import Tournament
 from views import menuConstants as INPUT
 from controllers.inputController import Input
@@ -43,8 +43,6 @@ class MenuController:
 
                 while user_choice3_input != 0:
                     if user_choice3_input == 1:
-                        print("hello")
-
                         # Chargement des joueurs du tournoi
                         listPlayers = tournament.getplayersList()
 

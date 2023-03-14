@@ -33,16 +33,3 @@ class Game:
                     i = i+1
                     y = y+1
         return collectionOfPaires
-
-    def winner(self):
-        """retounre le joueur gagnant de la competition"""
-
-        indexMax = len(self.__listPlayers)
-        scoreMinimum = 0
-        for i in range(indexMax):
-
-            if (self.__listPlayers[i].getScore() > scoreMinimum):
-
-                theWinner = self.__listPlayers[i].lastName
-
-        return theWinner
