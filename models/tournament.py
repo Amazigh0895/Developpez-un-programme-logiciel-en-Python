@@ -142,7 +142,6 @@ class Tournament:
             for round in rounds:
                 cptRound = round['_Round__name']
                 cptRound -= 1
-                print(round['_Round__listGames'])
                 cptGame += 1
             print(cptRound)
             if cptGame > 0:
