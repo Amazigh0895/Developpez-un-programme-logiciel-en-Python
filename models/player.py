@@ -6,7 +6,7 @@ class Player:
     """la classe joueur"""
 
     # Déclartation d'un variable static
-    db = TinyDB('data/tournaments/list_of_players.json')
+    db = TinyDB('data/tournaments/Allplayers.json')
     User = Query()
 
     def __init__(self, firstName,

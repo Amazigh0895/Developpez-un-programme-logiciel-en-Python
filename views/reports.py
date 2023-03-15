@@ -107,7 +107,5 @@ class Reports():
 
         for tournament in results:
             for round in tournament['_Tournament__listRounds']:
-                mytable.add_row([round['_Round__name'],
-                                 round['_Round__dateTime'],
-                                 round['_Round__listGames']['game']])
+                mytable.add_row([round['_Round__name'],round['_Round__dateTime'],round['_Round__listGames']['game']])
         print(mytable)

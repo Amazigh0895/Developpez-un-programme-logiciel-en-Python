@@ -6,9 +6,9 @@ class Round:
     """classe tour"""
 
     # Déclartation d'un variable static
-    db = TinyDB('data/tournaments/list_rounds_games.json')
+    db = TinyDB('data/tournaments/Allrounds.json')
     dbRoundTournament = TinyDB(
-        'data/tournaments/list_rounds_games_by_Tournaments.json')
+        'data/tournaments/listByTournament/list_rounds_games_by_Tournaments.json')
     User = Query()
 
     def __init__(self, name, dateTime):
@@ -37,14 +37,13 @@ class Round:
     def setName(self, name):
         self.__name = name
 
-    def startGame(self, obj_game):
+    def startGame(self, obj_game, cptGame):
         """declenche la partie et renvoie une liste
         de resultat dans un tableau gameResults
         prend en parametre une liste de pairs de jouerus
 
         """
         collectionOfPaires = obj_game.pair()
-
         indexMax = len(collectionOfPaires)
         player1 = []
         player2 = []
@@ -54,10 +53,20 @@ class Round:
         gameResults_dict = {"game": '', "player": '',
                             "results": '', "score": ''}
         for i in range(indexMax):
-            nbmatch = f"match {i+1}"
-            print(nbmatch)
-            player1.append(collectionOfPaires[i][0])
-            player2.append(collectionOfPaires[i][1])
+            if cptGame:
+                if i == cptGame:
+                    cptGame = -1
+                nbmatch = i+1+cptGame
+                print("match" + str(nbmatch))
+                player1.append(collectionOfPaires[i+cptGame][0])
+                player2.append(collectionOfPaires[i+cptGame][1])
+            else:
+                nbmatch = i+1
+                print("match" + str(nbmatch))
+                if i == cptGame:
+                    cptGame = -1
+                player1.append(collectionOfPaires[i][0])
+                player2.append(collectionOfPaires[i][1])
             print(f"""
                       {player1[i].lastName} | contre | {player2[i].lastName}
                       quel est le resultat:
@@ -77,18 +86,14 @@ class Round:
             if (user_choice_results_input == 1):
                 player1[i].setScore(1)
                 player2[i].setScore(0)
-                resultatplayer1 = f"""{player1[i].lastName}
-                gagne contre{player2[i].lastName}"""
-                resultatplayer2 = f"""{player2[i].lastName}
-                perd contre {player1[i].lastName}"""
+                resultatplayer1 = f"{player1[i].lastName} gagne contre {player2[i].lastName}"
+                resultatplayer2 = f"{player2[i].lastName} perd contre {player1[i].lastName}"
 
             elif (user_choice_results_input == 2):
                 player1[i].setScore(0)
                 player2[i].setScore(1)
-                resultatplayer1 = f"""{player1[i].lastName}
-                perd contre {player2[i].lastName}"""
-                resultatplayer2 = f"""{player2[i].lastName}
-                gagne contre {player1[i].lastName}"""
+                resultatplayer1 = f"{player1[i].lastName} perd contre {player2[i].lastName}"
+                resultatplayer2 = f"{player2[i].lastName} gagne contre {player1[i].lastName}"
 
             gameResults_dict["game"] = nbmatch
             gameResults_dict["player"] = player2[i].lastName
@@ -102,23 +107,7 @@ class Round:
                           "game": f'{gameResults_dict}'}
             self.setListGames(round_dict)
             self.save()
-
-    def reclassify(self, listPlayers):
-        """reclasse la liste des joueurs en fonction de leur score"""
-
-        indexMax = len(listPlayers)
-        cassificationOfPlayersByScore = []
-
-        scoreMinimum = 0
-        scoreMaximum = 1
-        for i in range(indexMax):
-            if (listPlayers[i].getScore() > scoreMinimum):
-                cassificationOfPlayersByScore.append(listPlayers[i])
-        for i in range(indexMax):
-            if (listPlayers[i].getScore() < scoreMaximum):
-                cassificationOfPlayersByScore.append(listPlayers[i])
-
-        return cassificationOfPlayersByScore
+            obj_game.reclassify()
 
     def save(self):
         """sauvegarde la liste des matchs

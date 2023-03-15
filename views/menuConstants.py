@@ -52,3 +52,4 @@ Nous pouvons vous afficher les rapports suivants dans le programme :
 -------------------------------------------------------------
 """
 STR_DISPLAY_REPORTS = "Vous voulez afficher les rapports : [Y/N] "
+SRT_RECHARGE_PROGRAMME = "Voulez vous reprendre votre programme [Y/N] ? "

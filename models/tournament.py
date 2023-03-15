@@ -7,8 +7,9 @@ class Tournament:
     """classe tournoi"""
 
     # Déclartation d'un variable static
-    db = TinyDB('data/tournaments/list_tournament_Roundgames.json')
-    dbPlayer = TinyDB('data/tournaments/list_players_by_tournament')
+    db = TinyDB('data/tournaments/Alltournaments.json')
+    dbPlayer = TinyDB('data/tournaments/listByTournament/list_players_by_tournament.json')
+    dbTounament = TinyDB('data/tournaments/listByTournament/tournament.json')
     User = Query()
 
     def __init__(self, name, location, dateTime,
@@ -102,6 +103,7 @@ class Tournament:
     def loadListPlayers():
         """methode static qui renvoi des donnees
         des joueurs d'un tournoi depuis la base de donnée json"""
+
         listPlayers_dict = Tournament.dbPlayer.all()
         return listPlayers_dict
 
@@ -114,6 +116,10 @@ class Tournament:
     def resetDbRound():
         """reinitialise le fichier json a zéro"""
         Round.dbRoundTournament.truncate()
+    @staticmethod
+    def resetdbTounament():
+        """reinitialise le fichier json a zero"""
+        Tournament.dbTounament.truncate()
 
     # --------------------------------------------------------------------------
     @staticmethod
@@ -128,16 +134,54 @@ class Tournament:
 
     def startRoundsGame(self, obj_round, obj_game):
         """declenche la partie en fonction du nombres de tours"""
+
+        rounds = Round.load()
+        cptGame = 0
+        cptRound = 0
+        if rounds:
+            for round in rounds:
+                cptRound = round['_Round__name']
+                cptRound -= 1
+                print(round['_Round__listGames'])
+                cptGame += 1
+            print(cptRound)
+            if cptGame > 0:
+                cptGame = 1
+
+        else:
+            cptGame = None
+            cptRound = 0
         nbMax = self.getNumberOfRounds()
         for i in range(nbMax):
-            obj_round.setName(f"Round{i+1}")
+            obj_round.setName(i+1+cptRound)
             print(INPUT.STR_START_GAME)
-            print(obj_round.getName())
-            obj_round.startGame(obj_game)
+            print("Round" + str(obj_round.getName()))
+            obj_round.startGame(obj_game,cptGame)
 
         self.setListGameRounds(Round.load())
         self.setPlayerList(Tournament.loadListPlayers())
         Tournament.save(self.__dict__)
+
+    def addTournament(self):
+        """ajout du tournoi dans la base de donnée json"""
+        Tournament.dbTounament.insert(self.__dict__)
+
+    @staticmethod
+    def loadTournamentObject():
+        """charge le tournoi depuis la base de donnée json"""
+        tournament_dict = Tournament.dbTounament.all()
+        if tournament_dict:
+            for tournament in tournament_dict:
+                name = tournament['_Tournament__name']
+                location = tournament['_Tournament__location']
+                date = tournament['_Tournament__dateTime']
+                numberOfRounds = tournament['_Tournament__numberOfRounds']
+                comment = tournament['_Tournament__description']
+            tournament = Tournament(name, location, date,
+                                    numberOfRounds, comment)
+            return tournament
+        else:
+            return None
 
     @staticmethod
     def save(tournament_round_dict):

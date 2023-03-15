@@ -26,9 +26,17 @@ class MenuController:
 
         while user_choice_input != 0:
             if user_choice_input == 1:
-                tournament = MenuController.createTournament(
-                    str(datetime.now()))
-                MenuController.createPlayers(tournament)
+                tournament = Tournament.loadTournamentObject()
+                if tournament:
+                    choice_charging_programme = ["Y", "N"]
+                    user_choice_programme_input = Input.makeRightChoiceInput(choice_charging_programme,
+                                                                             INPUT.SRT_RECHARGE_PROGRAMME,
+                                                                             False)
+                    if user_choice_programme_input == "Y":
+                        MenuController.createPlayers(tournament)
+                else:
+                    tournament = MenuController.createTournament(str(datetime.now()))
+                    MenuController.createPlayers(tournament)
 
                 # Choix du lancement de la partie
                 choice3_input = ["Y", "N"]
@@ -47,7 +55,7 @@ class MenuController:
                         listPlayers = tournament.getplayersList()
 
                         # Instantiation des objets Round et Game
-                        round = Round("Round", str(datetime.now()))
+                        round = Round(None, str(datetime.now()))
                         game = Game(listPlayers)
 
                         # Lancement de la partie
@@ -88,6 +96,7 @@ class MenuController:
                 user_choice_input = 2
         Tournament.resetPlayerDb()
         Tournament.resetDbRound()
+        Tournament.resetdbTounament()
         print(INPUT.END_GAME)
 
     @staticmethod
@@ -102,7 +111,7 @@ class MenuController:
         comment = Input.makeValideChoiceInput(INPUT.STR_TOURNAMENT_COMMENT)
         tournament = Tournament(name, location, date,
                                 numberOfRounds, comment)
-
+        tournament.addTournament()
         print(INPUT.STR_TOURNAMENT_SAVED)
 
         return tournament
@@ -110,10 +119,22 @@ class MenuController:
     @staticmethod
     def createPlayers(tournament):
         """Menu de creation des joueurs"""
-        print(INPUT.MENU_TITLE_PLAYER)
+        players = Tournament.loadListPlayers()
+        if players:
+            choice2_input = ["Y", "N"]
+            user_choice2_input = Input.makeRightChoiceInput(
+                choice2_input,
+                INPUT.STR_IF_ADD_NEW_PLAYER,
+                False)
+            if user_choice2_input == "N":
+                user_choice2_input = 0
+            else:
+                user_choice2_input = 1
+        else:
+            user_choice2_input = 1
 
+        print(INPUT.MENU_TITLE_PLAYER)
         choice2_input = ["Y", "N"]
-        user_choice2_input = 1
         while user_choice2_input != 0:
 
             firstName = input(INPUT.STR_PLAYER_FIRSTNAME)
@@ -125,10 +146,9 @@ class MenuController:
             tournament.addPlayer(player)
             player.save()
             print(INPUT.STR_PLAYER_SAVED)
-            user_choice2_input = Input.makeRightChoiceInput(
-                choice2_input,
-                INPUT.STR_IF_ADD_NEW_PLAYER,
-                False)
+            user_choice2_input = Input.makeRightChoiceInput(choice2_input,
+                                                            INPUT.STR_IF_ADD_NEW_PLAYER,
+                                                            False)
             if user_choice2_input == "N":
                 user_choice2_input = 0
             else:
